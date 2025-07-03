@@ -1,11 +1,23 @@
 <div class="container mt-5">
-  <h1>Teste de sistema</h1>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-  <a routerLink="/post/create/" class="btn btn-success">Create New Post</a>
+<div class="bg-primary text-white text-center py-4 shadow rounded mb-4">
+  <h1 class="h3 m-0 d-inline-flex align-items-center justify-content-center">
+     TESTE DE SISTEMA
+  </h1>
+  <i class="bi bi-pc-display-horizontal ms-2 fs-2"></i>
+</div>
 
-  <table class="table table-bordered table-hover table-sm">
-    <thead>
-      <tr>
+
+
+  <a routerLink="/post/create/" class="btn btn-primary rounded-circle shadow fab">
+    <i class="bi bi-plus-lg"></i>
+  </a>
+
+  <div class="table-responsive shadow-sm rounded">
+    <table class="table table-striped table-bordered table-hover table-sm align-middle">
+      <thead class="table-light text-center">
+        <tr>
         <th>id_teste_sistema</th>
         <th>id_implementacao</th>
         <th>resultado</th>
@@ -14,23 +26,30 @@
         <th>responsavel_teste</th>
         <th>status</th>
         <th width="160px">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let post of posts | slice:0:10">
-        <td>{{ post.id_teste_sistema }}</td>
-        <td>{{ post.id_implementacao }}</td>
-        <td>{{ post.resultado }}</td>
-        <td>{{ post.detalhes_teste }}</td>
-        <td>{{ post.data_teste | date: 'shortDate' }}</td>
-        <td>{{ post.responsavel_teste }}</td>
-        <td>{{ post.status }}</td>
-        <td>
-          <a [routerLink]="['/post', post.id_teste_sistema, 'view']" class="btn btn-info btn-sm">View</a>
-          <a [routerLink]="['/post', post.id_teste_sistema, 'edit']" class="btn btn-primary btn-sm">Edit</a>
-          <button (click)="deletePost(post.id_teste_sistema)" class="btn btn-danger btn-sm">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of posts | slice:0:10" class="text-center">
+          <td>{{ post.id_teste_sistema }}</td>
+          <td>{{ post.id_implementacao }}</td>
+          <td>{{ post.resultado }}</td>
+          <td>{{ post.detalhes_teste }}</td>
+          <td>{{ post.data_teste | date: 'shortDate' }}</td>
+          <td>{{ post.responsavel_teste }}</td>
+          <td>{{ post.status }}</td>
+          <td>
+            <a [routerLink]="['/post', post.id_teste_sistema, 'view']" class="btn btn-outline-info btn-sm me-1" title="Visualizar">
+              <i class="bi bi-eye"></i>
+            </a>
+            <a [routerLink]="['/post', post.id_teste_sistema, 'edit']" class="btn btn-outline-warning btn-sm me-1" title="Editar">
+              <i class="bi bi-pencil"></i>
+            </a>
+            <button (click)="deletePost(post.id_teste_sistema)" class="btn btn-outline-danger btn-sm" title="Excluir">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
