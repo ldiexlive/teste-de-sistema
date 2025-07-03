@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
      
-import {  Observable, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
   
 import { Post } from './post';
@@ -11,107 +11,54 @@ import { Post } from './post';
 })
 export class PostService {
   
-  private apiURL = "https://jsonplaceholder.typicode.com";
+  private apiURL = "http://localhost:8000/testes"; // URL real da sua API FastAPI
     
-  /*------------------------------------------
-  --------------------------------------------
-  Http Header Options
-  --------------------------------------------
-  --------------------------------------------*/
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   }
    
-  /*------------------------------------------
-  --------------------------------------------
-  Created constructor
-  --------------------------------------------
-  --------------------------------------------*/
   constructor(private httpClient: HttpClient) { }
-    
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
-  getAll(): Observable<any> {
-  
-    return this.httpClient.get(this.apiURL + '/posts/')
-  
-    .pipe(
-      catchError(this.errorHandler)
-    )
+
+  // GET /testes
+  getAll(): Observable<Post[]> {
+    return this.httpClient.get<Post[]>(this.apiURL)
+      .pipe(catchError(this.errorHandler));
   }
-    
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
-  create(post:Post): Observable<any> {
-  
-    return this.httpClient.post(this.apiURL + '/posts/', JSON.stringify(post), this.httpOptions)
-  
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }  
-    
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
-  find(id:number): Observable<any> {
-  
-    return this.httpClient.get(this.apiURL + '/posts/' + id)
-  
-    .pipe(
-      catchError(this.errorHandler)
-    )
+
+  // POST /testes
+  create(post: Post): Observable<Post> {
+    return this.httpClient.post<Post>(this.apiURL, JSON.stringify(post), this.httpOptions)
+      .pipe(catchError(this.errorHandler));
   }
-    
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
-  update(id:number, post:Post): Observable<any> {
-  
-    return this.httpClient.put(this.apiURL + '/posts/' + id, JSON.stringify(post), this.httpOptions)
- 
-    .pipe( 
-      catchError(this.errorHandler)
-    )
+
+  // GET /testes/:id
+  find(id: number): Observable<Post> {
+    return this.httpClient.get<Post>(`${this.apiURL}/${id}`)
+      .pipe(catchError(this.errorHandler));
   }
-       
-  /**
-   * Write code on Method
-   *
-   * @return response()
-   */
-  delete(id:number){
-    return this.httpClient.delete(this.apiURL + '/posts/' + id, this.httpOptions)
-  
-    .pipe(
-      catchError(this.errorHandler)
-    )
+
+  // PUT /testes/:id
+  update(id: number, post: Post): Observable<Post> {
+    return this.httpClient.put<Post>(`${this.apiURL}/${id}`, JSON.stringify(post), this.httpOptions)
+      .pipe(catchError(this.errorHandler));
   }
-      
-  /** 
-   * Write code on Method
-   *
-   * @return response()
-   */
-  errorHandler(error:any) {
+
+  // DELETE /testes/:id
+  delete(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiURL}/${id}`, this.httpOptions)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  // Tratamento de erros
+  errorHandler(error: any): Observable<never> {
     let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
+    if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
     } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Erro ${error.status}: ${error.message}`;
     }
-    return throwError(errorMessage);
- }
+    return throwError(() => errorMessage);
+  }
 }
