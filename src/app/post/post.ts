@@ -1,9 +1,9 @@
 export interface Post {
-status: any;
-responsavel_teste: any;
-data_teste: string|number|Date;
-detalhes_teste: any;
-resultado: any;
+status: string;
+responsavel_teste: string;
+data_teste: Date;
+detalhes_teste: Text;
+resultado: string;
 id_implementacao: any;
 id_teste_sistema: any;
     id: number;
