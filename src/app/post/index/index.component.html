@@ -1,28 +1,36 @@
 <div class="container mt-5">
-    <h1>Teste de sistema</h1>
-    
-    <a href="#" routerLink="/post/create/" class="btn btn-success">Create New Post</a>
-      
-    <table class="table table-striped">
-        <thead>
-              <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Body</th>
-                <th width="250px">Action</th>
-              </tr>
-        </thead>
-        <tbody>
-              <tr *ngFor="let post of posts">
-                <td>{{ post.id }}</td>
-                <td>{{ post.title }}</td>
-                <td>{{ post.body }}</td>
-                <td>
-                  <a href="#" [routerLink]="['/post/', post.id, 'view']" class="btn btn-info">View</a>
-                  <a href="#" [routerLink]="['/post/', post.id, 'edit']" class="btn btn-primary">Edit</a>
-                  <button type="button" (click)="deletePost(post.id)" class="btn btn-danger">Delete</button>
-                </td>
-              </tr>
-        </tbody>
-    </table>
- </div>
+  <h1>Teste de sistema</h1>
+
+  <a routerLink="/post/create/" class="btn btn-success">Create New Post</a>
+
+  <table class="table table-bordered table-hover table-sm">
+    <thead>
+      <tr>
+        <th>id_teste_sistema</th>
+        <th>id_implementacao</th>
+        <th>resultado</th>
+        <th>detalhes_teste</th>
+        <th>data_teste</th>
+        <th>responsavel_teste</th>
+        <th>status</th>
+        <th width="160px">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of posts | slice:0:10">
+        <td>{{ post.id_teste_sistema }}</td>
+        <td>{{ post.id_implementacao }}</td>
+        <td>{{ post.resultado }}</td>
+        <td>{{ post.detalhes_teste }}</td>
+        <td>{{ post.data_teste | date: 'shortDate' }}</td>
+        <td>{{ post.responsavel_teste }}</td>
+        <td>{{ post.status }}</td>
+        <td>
+          <a [routerLink]="['/post', post.id_teste_sistema, 'view']" class="btn btn-info btn-sm">View</a>
+          <a [routerLink]="['/post', post.id_teste_sistema, 'edit']" class="btn btn-primary btn-sm">Edit</a>
+          <button (click)="deletePost(post.id_teste_sistema)" class="btn btn-danger btn-sm">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
