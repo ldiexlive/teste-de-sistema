@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-  
+
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PostService } from '../post.service';
 import { Post } from '../post';
-  
+
 @Component({
   selector: 'app-index',
   standalone: true,
@@ -13,16 +13,16 @@ import { Post } from '../post';
   styleUrl: './index.component.css'
 })
 export class IndexComponent {
-  
+
   posts: Post[] = [];
-      
+
   /*------------------------------------------
   --------------------------------------------
   Created constructor
   --------------------------------------------
   --------------------------------------------*/
   constructor(public postService: PostService) { }
-      
+
   /**
    * Write code on Method
    *
@@ -32,9 +32,9 @@ export class IndexComponent {
     this.postService.getAll().subscribe((data: Post[])=>{
       this.posts = data;
       console.log(this.posts);
-    })  
+    })
   }
-      
+
   /**
    * Write code on Method
    *
@@ -42,9 +42,17 @@ export class IndexComponent {
    */
   deletePost(id:number){
     this.postService.delete(id).subscribe(res => {
-         this.posts = this.posts.filter(item => item.id !== id);
+         this.posts = this.posts.filter(item => item.id_implementacao !== id);
          console.log('Post deleted successfully!');
+         this.getAllPosts();
+
     })
   }
-  
+
+  getAllPosts() {
+  this.postService.getAll().subscribe(data => {
+    this.posts = data;
+  });
+}
+
 }
