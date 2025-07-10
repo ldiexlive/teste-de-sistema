@@ -55,4 +55,18 @@ export class IndexComponent {
   });
 }
 
+  getStatusTexto(status: string | number): string {
+    switch (status) {
+      case '1':
+      case 1:
+        return '1 - Em andamento';
+      case '2':
+      case 2:
+        return '2 - Em aceite';
+      default:
+        return 'Desconhecido';
+    }
+}
+
+
 }

@@ -36,7 +36,7 @@
           <td>{{ post.detalhes_teste }}</td>
           <td>{{ post.data_teste | date: 'shortDate' }}</td>
           <td>{{ post.responsavel_teste }}</td>
-          <td>{{ post.status }}</td>
+            <td>{{ getStatusTexto(post.status) }}</td>
           <td>
             <a [routerLink]="['/post', post.id_teste_sistema, 'view']" class="btn btn-outline-info btn-sm me-1" title="Visualizar">
               <i class="bi bi-eye"></i>
