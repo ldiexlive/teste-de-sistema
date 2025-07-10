@@ -6,7 +6,4 @@ detalhes_teste: Text;
 resultado: string;
 id_implementacao: any;
 id_teste_sistema: any;
-    id: number;
-    title: string;
-    body: string;
 }
