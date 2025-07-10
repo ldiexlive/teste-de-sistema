@@ -1,21 +1,22 @@
-<div class="container">
-    <h1>View Post</h1>
-  
-    <a href="#" routerLink="/post/index" class="btn btn-primary">Back</a>
-   
-    <div>
-        <strong>ID:</strong>
-        <p>{{ post.id }}</p>
-    </div>
-   
-    <div>
-        <strong>Title:</strong>
-        <p>{{ post.title }}</p>
-    </div>
-   
-    <div>
-        <strong>Body:</strong>
-        <p>{{ post.body }}</p>
-    </div>
-   
+<div class="container mt-5" *ngIf="post">
+  <div class="bg-primary text-white text-center py-3 rounded shadow mb-4">
+    <h2 class="m-0">Detalhes do Teste de Sistema</h2>
+  </div>
+
+  <div class="card shadow p-4">
+    <p><strong>ID do Teste:</strong> {{ post.id_teste_sistema }}</p>
+    <p><strong>ID da Implementação:</strong> {{ post.id_implementacao }}</p>
+    <p><strong>Resultado:</strong> {{ post.resultado }}</p>
+    <p><strong>Status:</strong> {{ post.status }}</p>
+    <p><strong>Responsável:</strong> {{ post.responsavel_teste }}</p>
+    <p><strong>Data do Teste:</strong> {{ post.data_teste | date:'dd/MM/yyyy' }}</p>
+    <p><strong>Detalhes:</strong></p>
+    <p class="border p-2 bg-light rounded">{{ post.detalhes_teste }}</p>
+  </div>
+
+  <div class="mt-4">
+    <a routerLink="/post/index" class="btn btn-secondary">
+      <i class="bi bi-arrow-left"></i> Voltar
+    </a>
+  </div>
 </div>
