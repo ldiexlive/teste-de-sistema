@@ -47,14 +47,14 @@ export class EditComponent {
         detalhes_teste: data.detalhes_teste,
         data_teste: this.formatDate(data.data_teste),
         responsavel_teste: data.responsavel_teste,
-        status: data.status
+         status: String(data.status)
       });
     });
   }
 
 formatDate(date: string | Date): string {
   const d = new Date(date);
-  return d.toISOString().split('T')[0]; // Retorna no formato yyyy-MM-dd
+  return d.toISOString().split('T')[0];
 }
 
   get f() {
