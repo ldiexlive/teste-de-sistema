@@ -1,24 +1,24 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-     
+
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-  
+
 import { Post } from './post';
-  
+
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  
-  private apiURL = "http://localhost:8000/testes"; // URL real da sua API FastAPI
-    
+
+  private apiURL = "http://127.0.0.1:8000/posts";
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   }
-   
+
   constructor(private httpClient: HttpClient) { }
 
   // GET /testes
@@ -61,4 +61,6 @@ export class PostService {
     }
     return throwError(() => errorMessage);
   }
+
+  
 }
