@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-  
+
 import { PostService } from '../post.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-  
+
 @Component({
   selector: 'app-create',
   standalone: true,
@@ -13,9 +13,9 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
   styleUrl: './create.component.css'
 })
 export class CreateComponent {
-  
+
   form!: FormGroup;
-      
+
   /*------------------------------------------
   --------------------------------------------
   Created constructor
@@ -25,7 +25,7 @@ export class CreateComponent {
     public postService: PostService,
     private router: Router
   ) { }
-      
+
   /**
    * Write code on Method
    *
@@ -33,11 +33,15 @@ export class CreateComponent {
    */
   ngOnInit(): void {
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      body: new FormControl('', Validators.required)
+      id_implementacao: new FormControl('', Validators.required),
+      resultado: new FormControl('', Validators.required),
+      detalhes_teste: new FormControl('', Validators.required),
+      data_teste: new FormControl('', Validators.required),
+      responsavel_teste: new FormControl('', Validators.required),
+      status: new FormControl('', Validators.required)
     });
   }
-      
+
   /**
    * Write code on Method
    *
@@ -46,7 +50,7 @@ export class CreateComponent {
   get f(){
     return this.form.controls;
   }
-      
+
   /**
    * Write code on Method
    *
@@ -59,5 +63,6 @@ export class CreateComponent {
          this.router.navigateByUrl('post/index');
     })
   }
-  
+
+
 }
